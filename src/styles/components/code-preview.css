@@ -1,0 +1,37 @@
+.token {
+  @apply text-neutral-200;
+}
+.tag {
+  @apply text-pink-400;
+}
+.comment{
+    @apply text-neutral-400 text-sm;
+}
+.punctuation {
+  @apply text-neutral-300;
+}
+.attr-name {
+  @apply text-emerald-400;
+}
+.attr-value {
+  @apply text-sky-400;
+}
+
+.overflow {
+  @apply flex flex-col border border-neutral-200 dark:border-neutral-700 bg-neutral-800 text-white rounded-lg p-4 overflow-x-auto w-64 min-w-full;
+}
+.component-section {
+  @apply flex flex-col gap-2 rounded-lg p-4 border border-neutral-200 dark:border-neutral-700;
+}
+.component-block {
+  @apply flex flex-col items-center gap-3;
+}
+.mid-section {
+  @apply grid grid-cols-2 w-full border-x border-neutral-200 dark:border-neutral-600;
+}
+.example {
+  @apply flex text-sm p-2 font-medium text-center text-neutral-700 bg-neutral-50 border-r border-neutral-200 dark:text-white dark:bg-neutral-900 dark:border-neutral-600;
+}
+.code-section {
+  @apply text-neutral-500 dark:text-neutral-400;
+}
