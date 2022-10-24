@@ -1,19 +1,34 @@
 import { Tab } from "@headlessui/react";
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import {
   TabCodeActive,
   TabCodeInactive,
   TabPreviewActive,
   TabPreviewInactive,
 } from "../components/BtnCond";
+import BtnIndex from "../components/BtnIndex";
+import {
+  RoundedTopTabCode,
+  TabWithBgCode,
+  UnderlineTabCode,
+} from "../components/tabs/TabsCode";
 import {
   InteractiveTab,
   RoundedTopTab,
-  SolidBgTab,
+  TabWithBg,
   UnderlineTab,
 } from "../components/tabs/TabsComponent";
+import {
+  RoundedTopTabCopy,
+  TabWithBgCopy,
+  UnderlineTabCopy,
+} from "../components/tabs/TabsCopyAction";
 
 export const Tabs = () => {
+  const toTabWithBg = useRef(null),
+    toRoundedTopTab = useRef(null),
+    toUndelineTab = useRef(null),
+    toInteractiveTab = useRef(null);
   return (
     <>
       <div className="content-left">
@@ -31,11 +46,11 @@ export const Tabs = () => {
 
         <div className="flex flex-col gap-24">
           {/* Start */}
-          <div className="flex flex-col gap-4">
+          <div ref={toTabWithBg} className="flex flex-col gap-4">
             <Tab.Group>
               <div className="flex items-center gap-2">
                 <h4 className="text-lg sm:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
-                  Solid Background Tabs
+                  Tabs With Background
                 </h4>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Tab.List className="flex bg-neutral-100 rounded-lg p-0.5 dark:bg-neutral-700">
@@ -59,19 +74,21 @@ export const Tabs = () => {
                     </Tab>
                   </Tab.List>
                   <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  {/* <AlertDefaultCopy /> */}
+                  <TabWithBgCopy />
                 </div>
               </div>
               <Tab.Panels>
                 <Tab.Panel className="outline-none">
                   <div className="component-section">
                     <div className="component-block">
-                      <SolidBgTab />
+                      <TabWithBg />
                     </div>
                   </div>
                 </Tab.Panel>
                 <Tab.Panel className="outline-none">
-                  <div className="overflow">{/* <DefaultAlertCode /> */}</div>
+                  <div className="overflow">
+                    <TabWithBgCode />
+                  </div>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
@@ -79,7 +96,7 @@ export const Tabs = () => {
           {/* End */}
 
           {/* Start */}
-          <div className="flex flex-col gap-4">
+          <div ref={toRoundedTopTab} className="flex flex-col gap-4">
             <Tab.Group>
               <div className="flex items-center gap-2">
                 <h4 className="text-lg sm:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
@@ -107,7 +124,7 @@ export const Tabs = () => {
                     </Tab>
                   </Tab.List>
                   <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  {/* <AlertDefaultCopy /> */}
+                  <RoundedTopTabCopy />
                 </div>
               </div>
               <Tab.Panels>
@@ -119,7 +136,9 @@ export const Tabs = () => {
                   </div>
                 </Tab.Panel>
                 <Tab.Panel className="outline-none">
-                  <div className="overflow">{/* <DefaultAlertCode /> */}</div>
+                  <div className="overflow">
+                    <RoundedTopTabCode />
+                  </div>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
@@ -127,7 +146,7 @@ export const Tabs = () => {
           {/* End */}
 
           {/* Start */}
-          <div className="flex flex-col gap-4">
+          <div ref={toUndelineTab} className="flex flex-col gap-4">
             <Tab.Group>
               <div className="flex items-center gap-2">
                 <h4 className="text-lg sm:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
@@ -155,7 +174,7 @@ export const Tabs = () => {
                     </Tab>
                   </Tab.List>
                   <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  {/* <AlertDefaultCopy /> */}
+                  <UnderlineTabCopy />
                 </div>
               </div>
               <Tab.Panels>
@@ -167,7 +186,9 @@ export const Tabs = () => {
                   </div>
                 </Tab.Panel>
                 <Tab.Panel className="outline-none">
-                  <div className="overflow">{/* <DefaultAlertCode /> */}</div>
+                  <div className="overflow">
+                    <UnderlineTabCode />
+                  </div>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
@@ -175,7 +196,7 @@ export const Tabs = () => {
           {/* End */}
 
           {/* Start */}
-          <div className="flex flex-col gap-4">
+          <div ref={toInteractiveTab} className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <h3 className="flex-grow">Interactive Tabs</h3>
             </div>
@@ -185,6 +206,28 @@ export const Tabs = () => {
           </div>
           {/* End */}
         </div>
+      </div>
+      <div className="content-right">
+        <h6
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="cursor-pointer"
+        >
+          <span className="text-primary-main">#</span> On this page
+        </h6>
+        <ul>
+          <li>
+            <BtnIndex reference={toTabWithBg} label="tabs with background" />
+          </li>
+          <li>
+            <BtnIndex reference={toRoundedTopTab} label="rounded top tabs" />
+          </li>
+          <li>
+            <BtnIndex reference={toUndelineTab} label="underline tabs" />
+          </li>
+          <li>
+            <BtnIndex reference={toInteractiveTab} label="interactive tabs" />
+          </li>
+        </ul>
       </div>
     </>
   );

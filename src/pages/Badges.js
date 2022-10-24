@@ -1,37 +1,19 @@
-import React from "react";
-import {
-  TabCodeActive,
-  TabCodeInactive,
-  TabPreviewActive,
-  TabPreviewInactive,
-} from "../components/BtnCond";
-import { Tab } from "@headlessui/react";
-import {
-  StepCircle,
-  StepMini,
-  StepVertical,
-  SimpleStep,
-} from "../components/steper/StepComponent";
-import {
-  StepCircleCode,
-  StepMiniCode,
-  SimpleStepCode,
-  VerticalCircleCode,
-} from "../components/steper/StepCode";
-import {
-  StepMiniCopy,
-  SimpleStepCopy,
-  StepCircleCopy,
-  StepVerticalCopy,
-} from "../components/steper/StepCopyAction";
+import { Tab } from '@headlessui/react';
+import React, { Fragment, useRef } from 'react';
+import { BadgeWithIcon, DefaultBadges, DismissableBadges } from '../components/badges/BadgesComponent';
+import { DefaultBadgesCopy } from '../components/badges/BadgesCopyAction';
+import { TabCodeActive, TabCodeInactive, TabPreviewActive, TabPreviewInactive } from '../components/BtnCond';
+import BtnIndex from '../components/BtnIndex';
 
-const Steper = () => {
+const Badges = () => {
+    const toDefaultAlert = useRef(null),
+    toAlertWithDescription = useRef(null);
   return (
     <>
       <div className="content-left">
-        <div className="pb-4 mb-10 border-b border-slate-200 dark:border-slate-800">
-          <h1 className="mb-4">Steps</h1>
-          <p className="leading-relaxed dark:text-slate-300">
+        <div className="pb-4 mb-10 border-b border-neutral-200 dark:border-neutral-700">
+          <h1 className="mb-4">Badges</h1>
+          <p className="leading-relaxed dark:text-neutral-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
             suscipit magnam minima. Beatae deserunt perferendis aut ipsum
             labore, nihil laborum sint, vitae aspernatur dolor quibusdam velit
@@ -42,16 +24,19 @@ const Steper = () => {
         </div>
 
         <div className="flex flex-col gap-24">
-          {/* Simple  */}
-          <div className="flex flex-col gap-4">
+          {/* Start */}
+          <div ref={toDefaultAlert} className="flex flex-col gap-4">
             <Tab.Group>
-              <div className="flex items-center gap-2">
-                <h4 className="text-lg md:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
-                  Simple
+              <div className="flex gap-4">
+                <div className='flex flex-col gap-2 flex-grow'>
+                <h4 className="text-lg sm:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
+                  Default Badges
                 </h4>
+                <p className='text-sm sm:text-base text-neutral-500 dark:text-neutral-500 tracking-wide'>Use the <span className='text-primary-main'>text-sm</span> if you want to create a large variant of the badges.</p>
+                </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Tab.List className="flex bg-neutral-100 rounded-lg p-0.5 dark:bg-neutral-700">
-                    <Tab>
+                    <Tab as={Fragment}>
                       {({ selected }) => (
                         <div className="focus:outline-none">
                           {selected ? (
@@ -62,7 +47,7 @@ const Steper = () => {
                         </div>
                       )}
                     </Tab>
-                    <Tab>
+                    <Tab as={Fragment}>
                       {({ selected }) => (
                         <div className="focus:outline-none">
                           {selected ? <TabCodeActive /> : <TabCodeInactive />}
@@ -71,88 +56,37 @@ const Steper = () => {
                     </Tab>
                   </Tab.List>
                   <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  <SimpleStepCopy />
+                  <DefaultBadgesCopy />
                 </div>
               </div>
               <Tab.Panels>
-                <Tab.Panel>
+                <Tab.Panel className="outline-none">
                   <div className="component-section">
                     <div className="component-block">
-                      <SimpleStep />
+                      <DefaultBadges />
                     </div>
                   </div>
                 </Tab.Panel>
-                <Tab.Panel>
-                  <div className="component-section">
-                    <div className="component-block">
-                      <SimpleStepCode />
-                    </div>
+                <Tab.Panel className="outline-none">
+                  <div className="overflow">
+                    {/* <DefaultAlertCode /> */}
                   </div>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
           </div>
-          {/* Circle */}
-          <div className="flex flex-col gap-4">
-            <Tab.Group>
-              <div className="flex items-center gap-2">
-                <h4 className="text-lg md:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
-                  Circle
-                </h4>
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <Tab.List className="flex bg-neutral-100 rounded-lg p-0.5 dark:bg-neutral-700">
-                    <Tab>
-                      {({ selected }) => (
-                        <div className="focus:outline-none">
-                          {selected ? (
-                            <TabPreviewActive />
-                          ) : (
-                            <TabPreviewInactive />
-                          )}
-                        </div>
-                      )}
-                    </Tab>
-                    <Tab>
-                      {({ selected }) => (
-                        <div className="focus:outline-none">
-                          {selected ? <TabCodeActive /> : <TabCodeInactive />}
-                        </div>
-                      )}
-                    </Tab>
-                  </Tab.List>
-                  <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  <StepCircleCopy />
-                </div>
-              </div>
-              <Tab.Panels>
-                <Tab.Panel>
-                  <div className="component-section">
-                    <div className="component-block">
-                      <StepCircle />
-                    </div>
-                  </div>
-                </Tab.Panel>
-                <Tab.Panel>
-                  <div className="component-section">
-                    <div className="component-block">
-                      <StepCircleCode />
-                    </div>
-                  </div>
-                </Tab.Panel>
-              </Tab.Panels>
-            </Tab.Group>
-          </div>
+          {/* End */}
 
-          {/* Mini Circle */}
-          <div className="flex flex-col gap-4">
+          {/* Start */}
+          <div ref={toDefaultAlert} className="flex flex-col gap-4">
             <Tab.Group>
               <div className="flex items-center gap-2">
-                <h4 className="text-lg md:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
-                  Mini Circle
+              <h4 className="text-lg sm:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
+                  Badges With Icon
                 </h4>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Tab.List className="flex bg-neutral-100 rounded-lg p-0.5 dark:bg-neutral-700">
-                    <Tab>
+                    <Tab as={Fragment}>
                       {({ selected }) => (
                         <div className="focus:outline-none">
                           {selected ? (
@@ -163,7 +97,7 @@ const Steper = () => {
                         </div>
                       )}
                     </Tab>
-                    <Tab>
+                    <Tab as={Fragment}>
                       {({ selected }) => (
                         <div className="focus:outline-none">
                           {selected ? <TabCodeActive /> : <TabCodeInactive />}
@@ -172,38 +106,37 @@ const Steper = () => {
                     </Tab>
                   </Tab.List>
                   <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  <StepMiniCopy />
+                  <DefaultBadgesCopy />
                 </div>
               </div>
               <Tab.Panels>
-                <Tab.Panel>
+                <Tab.Panel className="outline-none">
                   <div className="component-section">
                     <div className="component-block">
-                      <StepMini />
+                      <BadgeWithIcon />
                     </div>
                   </div>
                 </Tab.Panel>
-                <Tab.Panel>
-                  <div className="component-section">
-                    <div className="component-block">
-                      <StepMiniCode />
-                    </div>
+                <Tab.Panel className="outline-none">
+                  <div className="overflow">
+                    {/* <DefaultAlertCode /> */}
                   </div>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
           </div>
+          {/* End */}
 
-          {/* Vertical Circle */}
-          <div className="flex flex-col gap-4">
+          {/* Start */}
+          <div ref={toAlertWithDescription} className="flex flex-col gap-4">
             <Tab.Group>
               <div className="flex items-center gap-2">
-                <h4 className="text-lg md:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
-                  Vertical Circle
+                <h4 className="text-lg sm:text-xl font-medium text-neutral-800 dark:text-neutral-50 flex-grow">
+                  Dismisable Badges
                 </h4>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Tab.List className="flex bg-neutral-100 rounded-lg p-0.5 dark:bg-neutral-700">
-                    <Tab>
+                    <Tab as={Fragment}>
                       {({ selected }) => (
                         <div className="focus:outline-none">
                           {selected ? (
@@ -214,7 +147,7 @@ const Steper = () => {
                         </div>
                       )}
                     </Tab>
-                    <Tab>
+                    <Tab as={Fragment}>
                       {({ selected }) => (
                         <div className="focus:outline-none">
                           {selected ? <TabCodeActive /> : <TabCodeInactive />}
@@ -222,30 +155,30 @@ const Steper = () => {
                       )}
                     </Tab>
                   </Tab.List>
-                  <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden md:block"></div>
-                  <StepVerticalCopy />
+                  <div className="h-5 w-px bg-neutral-200 dark:bg-neutral-700 hidden sm:block"></div>
+                  {/* <AlertWithDescriptionCopy /> */}
                 </div>
               </div>
               <Tab.Panels>
-                <Tab.Panel>
+                <Tab.Panel className="outline-none">
                   <div className="component-section">
                     <div className="component-block">
-                      <StepVertical />
+                      <DismissableBadges />
                     </div>
                   </div>
                 </Tab.Panel>
-                <Tab.Panel>
-                  <div className="component-section">
-                    <div className="component-block">
-                      <VerticalCircleCode />
-                    </div>
+                <Tab.Panel className="outline-none">
+                  <div className="overflow">
+                    {/* <AlertWithDescriptionCode /> */}
                   </div>
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
           </div>
+          {/* End */}
         </div>
       </div>
+
       <div className="content-right">
         <h6
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -253,9 +186,20 @@ const Steper = () => {
         >
           <span className="text-primary-main">#</span> On this page
         </h6>
+        <ul>
+          <li>
+            <BtnIndex reference={toDefaultAlert} label="default alert" />
+          </li>
+          <li>
+            <BtnIndex
+              reference={toAlertWithDescription}
+              label="alert with description"
+            />
+          </li>
+        </ul>
       </div>
     </>
   );
 };
 
-export default Steper;
+export default Badges
